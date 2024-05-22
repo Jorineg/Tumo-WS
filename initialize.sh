@@ -37,5 +37,5 @@ cd "$(basename "$1" .git)"
 # install node package
 npm install vscode-websocket-alerts
 
-code --install-extension formulahendry.code-runner --install-extension ritwickdey.LiveServer && --install-extension JorinEggers.js-prompt-alert
+code --install-extension formulahendry.code-runner --install-extension ritwickdey.LiveServer --install-extension JorinEggers.js-prompt-alert
 code .
