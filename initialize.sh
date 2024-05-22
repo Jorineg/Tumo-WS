@@ -29,12 +29,13 @@ source ~/.bash_profile
 echo 'alias code="$HOME/bin/code"' >> ~/.bash_profile
 source ~/.bash_profile
 
-# install node package
-npm install vscode-websocket-alerts
-
 # Clone the GitHub repository and open it in Visual Studio Code
 cd ~/Desktop
 git clone "$1"
 cd "$(basename "$1" .git)"
+
+# install node package
+npm install vscode-websocket-alerts
+
 code --install-extension formulahendry.code-runner --install-extension ritwickdey.LiveServer && --install-extension JorinEggers.js-prompt-alert
 code .
