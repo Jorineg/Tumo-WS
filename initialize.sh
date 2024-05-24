@@ -32,6 +32,7 @@ source ~/.bash_profile
 # Clone the GitHub repository and open it in Visual Studio Code
 cd ~/Desktop
 git clone "$1"
+git pull
 cd "$(basename "$1" .git)"
 
 # install node package
