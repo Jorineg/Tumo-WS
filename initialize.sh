@@ -42,7 +42,6 @@ cd "$(basename "$1" .git)"
 npm install vscode-websocket-alerts
 
 code --install-extension formulahendry.code-runner --install-extension ritwickdey.LiveServer --install-extension JorinEggers.js-prompt-alert --install-extension JorinEggers.ai-code-checker
-code . &
 
 # check if second argument is provided
 if [ $# -eq 2 ]; then
@@ -55,3 +54,5 @@ if [ $# -eq 2 ]; then
     fi
     cd ..
 fi
+
+code . 
