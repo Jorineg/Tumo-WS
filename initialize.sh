@@ -42,12 +42,16 @@ cd "$(basename "$1" .git)"
 npm install vscode-websocket-alerts
 
 code --install-extension formulahendry.code-runner --install-extension ritwickdey.LiveServer --install-extension JorinEggers.js-prompt-alert --install-extension JorinEggers.ai-code-checker
-code .
+code . &
 
 # check if second argument is provided
 if [ $# -eq 2 ]; then
     echo "Setting up the AI Code Checker extension..."
     cd .vscode
-    sed 's/^{/{\n  "aiCodeChecker.encApiKey": "'"$2"'",/' settings.json > settings.json
+    if [[ "$(uname)" == "Darwin" ]]; then
+        sed -i '' 's/^{/{\n  "aiCodeChecker.encApiKey": "'"$2"'",/' settings.json
+    else
+        sed -i 's/^{/{\n  "aiCodeChecker.encApiKey": "'"$2"'",/' settings.json
+    fi
     cd ..
 fi
