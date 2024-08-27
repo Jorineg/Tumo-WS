@@ -44,3 +44,10 @@ npm install vscode-websocket-alerts
 
 code --install-extension formulahendry.code-runner --install-extension ritwickdey.LiveServer --install-extension JorinEggers.js-prompt-alert --install-extension JorinEggers.ai-code-checker
 code .
+
+# check if second argument is provided
+if [ $# -eq 2 ]; then
+    cd .vscode
+    sed 's/^{/{\n  "aiCodeChecker.encApiKey": "'"$2"'",/' settings.json > settings.json
+    cd ..
+fi
