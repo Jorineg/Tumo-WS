@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Check if the input argument is provided
-if [ $# -ne 1 ]; then
+if [ $# -lt 1 ]; then
     echo "Usage: $0 <GitHub Repository URL>"
     exit 1
 fi
