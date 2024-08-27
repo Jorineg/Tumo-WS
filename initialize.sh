@@ -36,7 +36,6 @@ fi
 # Clone the GitHub repository and open it in Visual Studio Code
 cd ~/Desktop
 git clone "$1"
-git pull
 cd "$(basename "$1" .git)"
 
 # install node package
@@ -47,6 +46,7 @@ code .
 
 # check if second argument is provided
 if [ $# -eq 2 ]; then
+    echo "Setting up the AI Code Checker extension..."
     cd .vscode
     sed 's/^{/{\n  "aiCodeChecker.encApiKey": "'"$2"'",/' settings.json > settings.json
     cd ..
