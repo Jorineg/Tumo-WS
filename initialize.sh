@@ -6,28 +6,32 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
-# Create the directory if it doesn't exist
-mkdir -p ~/bin
-
-# Define the content of the script
-SCRIPT_CONTENT='#!/usr/bin/env bash
-
-ELECTRON="/Applications/Visual Studio Code.app/Contents/MacOS/Electron"
-CLI="/Applications/Visual Studio Code.app/Contents/Resources/app/out/cli.js"
-ELECTRON_RUN_AS_NODE=1 "$ELECTRON" "$CLI" --ms-enable-electron-run-as-node "$@"
-exit $?'
-
-# Write the script content to ~/bin/code
-echo "$SCRIPT_CONTENT" > ~/bin/code
-
-# Make the script executable
-chmod +x ~/bin/code
-
-# Add ~/bin to PATH and set alias for code
-echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bash_profile
-source ~/.bash_profile
-echo 'alias code="$HOME/bin/code"' >> ~/.bash_profile
-source ~/.bash_profile
+# fix code command for mac
+if [[ "$(uname)" == "Darwin" ]]; then
+    echo "You are on a Mac."
+    # Create the directory if it doesn't exist
+    mkdir -p ~/bin
+    
+    # Define the content of the script
+    SCRIPT_CONTENT='#!/usr/bin/env bash
+    
+    ELECTRON="/Applications/Visual Studio Code.app/Contents/MacOS/Electron"
+    CLI="/Applications/Visual Studio Code.app/Contents/Resources/app/out/cli.js"
+    ELECTRON_RUN_AS_NODE=1 "$ELECTRON" "$CLI" --ms-enable-electron-run-as-node "$@"
+    exit $?'
+    
+    # Write the script content to ~/bin/code
+    echo "$SCRIPT_CONTENT" > ~/bin/code
+    
+    # Make the script executable
+    chmod +x ~/bin/code
+    
+    # Add ~/bin to PATH and set alias for code
+    echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bash_profile
+    source ~/.bash_profile
+    echo 'alias code="$HOME/bin/code"' >> ~/.bash_profile
+    source ~/.bash_profile
+fi
 
 # Clone the GitHub repository and open it in Visual Studio Code
 cd ~/Desktop
