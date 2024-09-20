@@ -40,6 +40,7 @@ cd "$(basename "$1" .git)"
 
 # install node package
 npm install vscode-websocket-alerts
+npm install jest
 
 code --install-extension formulahendry.code-runner --install-extension ritwickdey.LiveServer --install-extension JorinEggers.js-prompt-alert --install-extension JorinEggers.ai-code-checker
 
