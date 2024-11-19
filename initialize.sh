@@ -44,7 +44,9 @@ npm install jest
 
 code --install-extension formulahendry.code-runner --install-extension ritwickdey.LiveServer --install-extension JorinEggers.js-prompt-alert --install-extension JorinEggers.ai-code-checker
 
-cd code
+if [ -d "code" ]; then
+    cd code
+fi
 
 # check if second argument is provided
 if [ $# -eq 2 ]; then
