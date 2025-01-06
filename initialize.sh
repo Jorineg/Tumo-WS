@@ -42,7 +42,13 @@ case "$(uname -s)" in
         SCRIPT_CONTENT='#!/usr/bin/env bash
         ELECTRON="/Applications/Visual Studio Code.app/Contents/MacOS/Electron"
         CLI="/Applications/Visual Studio Code.app/Contents/Resources/app/out/cli.js"
-        ELECTRON_RUN_AS_NODE=1 "$ELECTRON" "$CLI" --ms-enable-electron-run-as-node "$@"
+        
+        # Handle arguments properly
+        if [ "$1" = "." ]; then
+            ELECTRON_RUN_AS_NODE=1 "$ELECTRON" "$CLI" --ms-enable-electron-run-as-node . .
+        else
+            ELECTRON_RUN_AS_NODE=1 "$ELECTRON" "$CLI" --ms-enable-electron-run-as-node "$@"
+        fi
         exit $?'
         
         echo "$SCRIPT_CONTENT" > ~/bin/code
